@@ -1,11 +1,16 @@
-import React from 'react';
 import './globals.css';
+import React from 'react';
 import Navbar from '@/components/Navbar';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] })
+// const inconsolata = Inconsolata({ subsets: ['latin'] });
+// const roboto = Roboto({ subsets: ['latin'], weight: ['400'] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='pt-br'>
-      <body>
+      <body className={inter.className}>
         <Navbar />
         <main className='max-w-3xl mx-auto py-10'>
           {children}
