@@ -17,7 +17,7 @@ const fetchTours = async () => {
   const response = await fetch(url);
   const data: Tour[] = await response.json();
   return data;
-}
+};
 
 async function ToursPage() {
   const data = await fetchTours();
@@ -27,13 +27,18 @@ async function ToursPage() {
       <div className="grid md:grid-cols-2 gap-8">
         {data.map((tour) => {
           return (
-            <Link key={tour.id} href={`/tours/${tour.id}`} className='hover:text-blue-500'>
+            <Link
+              key={tour.id}
+              href={`/tours/${tour.id}`}
+              className='hover:text-blue-500'
+            >
               <div className='relative h-48 mb-2'>
                 <Image
                   src={tour.image}
                   alt={tour.name}
                   fill
-                  sizes='(max-width:768px) 100vw,(max-width:1200  px) 50vw, 33vw'
+                  sizes=
+                  '(max-width:768px) 100vw,(max-width:1200  px) 50vw, 33vw'
                   priority
                   className='object-cover rounded'
                 />
@@ -44,7 +49,7 @@ async function ToursPage() {
         })}
       </div>
     </section>
-  )
+  );
 }
 
-export default ToursPage
+export default ToursPage;

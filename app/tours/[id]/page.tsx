@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import mapsImg from '@/images/maps.jpg';
-import Image from 'next/image'
+import Image from 'next/image';
 const url = 'https://www.course-api.com/images/tours/tour-1.jpeg';
 
 function Page({ params }: { params: { id: string } }) {
@@ -34,7 +34,7 @@ function Page({ params }: { params: { id: string } }) {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 export default Page;

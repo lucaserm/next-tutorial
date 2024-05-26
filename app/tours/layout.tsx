@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function ToursLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +10,7 @@ function ToursLayout({ children }: { children: React.ReactNode }) {
       </header>
       {children}
     </div>
-  )
+  );
 }
 
-export default ToursLayout
+export default ToursLayout;

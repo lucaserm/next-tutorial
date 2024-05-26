@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
 
 function Navbar() {
   return (
@@ -10,7 +10,7 @@ function Navbar() {
       <Link href='/about'>About</Link>
       <Link href='/info/contact'>Contact</Link>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
