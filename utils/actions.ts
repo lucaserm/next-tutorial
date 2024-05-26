@@ -10,7 +10,7 @@ type User = {
   lastName: string;
 };
 
-export const createUser = async (formData: FormData) => {
+export const createUser = async (prevState: any, formData: FormData) => {
   'use server';
   await new Promise((resolve) => setTimeout(resolve, 3000));
   const firstName = formData.get('firstName') as string;
@@ -20,8 +20,10 @@ export const createUser = async (formData: FormData) => {
     await saveUser(newUser);
     revalidatePath('/actions');
     //some logic
+    return 'User created successfuly...';
   } catch (error) {
     console.log(error);
+    return 'Failed to create user...';
   }
   //redirect('/');
 };
@@ -38,3 +40,13 @@ const saveUser = async (user: User) => {
   users.push(user);
   await writeFile('users.json', JSON.stringify(users));
 };
+
+export const deleteUser = async (formData: FormData) => {
+  const id = formData.get('id') as string;
+  const users = await fetchUsers();
+  const updatedUsers = users.filter((user) => user.id !== id);
+  await writeFile('users.json', JSON.stringify(updatedUsers));
+  revalidatePath('/actions');
+};
+
+export const removeUser = async (formData: FormData) => {};
