@@ -1,6 +1,16 @@
-import React from 'react';
-
+'use client';
+import { useFormState, useFormStatus } from 'react-dom';
 import { createUser } from '@/utils/actions';
+
+const SubmitButton = () => {
+  const {pending} = useFormStatus();
+  return (
+    <button type="submit" className={btnStyle} disabled={pending}>
+      {pending?'Loading...':'Create Account'}
+
+    </button>
+  );
+};
 
 function Form() {
   return (
@@ -18,7 +28,7 @@ function Form() {
         defaultValue='Parker'
         required
         className={inputStyle} />
-      <button type="submit" className={btnStyle}>Submit</button>
+      <SubmitButton/>
     </form>
   );
 }

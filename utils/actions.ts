@@ -1,6 +1,6 @@
 'use server';
 
-import {readFile, writeFile} from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -10,23 +10,30 @@ type User = {
   lastName: string;
 };
 
-export const createUser = async (formData:FormData) => {
+export const createUser = async (formData: FormData) => {
   'use server';
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
-  const newUser:User = {firstName, lastName, id:Date.now().toString()};
-  await saveUser(newUser);
-  revalidatePath('/actions');
+  const newUser: User = { firstName, lastName, id: Date.now().toString() };
+  try {
+    await saveUser(newUser);
+    revalidatePath('/actions');
+    //some logic
+  } catch (error) {
+    console.log(error);
+  }
+  //redirect('/');
 };
 
-export const fetchUsers = async ():Promise<User[]> => {
+export const fetchUsers = async (): Promise<User[]> => {
   'use server';
-  const result = await readFile('users.json', {encoding:'utf8'});
-  const users = result? JSON.parse(result) : [];
+  const result = await readFile('users.json', { encoding: 'utf8' });
+  const users = result ? JSON.parse(result) : [];
   return users;
 };
 
-const saveUser = async (user:User) => {
+const saveUser = async (user: User) => {
   const users = await fetchUsers();
   users.push(user);
   await writeFile('users.json', JSON.stringify(users));
